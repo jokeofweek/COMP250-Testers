@@ -21,6 +21,9 @@ public class UnitTester {
 		testCases.put("then=23", true);
 		testCases.put("else=23", true);
 		testCases.put("end=23", true);
+		testCases.put("if true then if false then a=2 else b=12 end else a=10 end", true);
+		testCases.put("if true then if false then a=2 else b=12 end else if false then a=2 else b=12 end end", true);
+		testCases.put("if true then if false then if true then if false then a=2 else b=12 end else if false then a=2 else b=12 end end else b=12 end else if false then a=2 else if true then if false then a=2 else b=12 end else if false then a=2 else b=12 end end end end", true);
 		testCases.put("if true then a=2 else b=31 end", true);
 		testCases.put("if false then if true then c=5 else d=5 end else b=31 end", true);
 		testCases.put("if true then a=2 else b=31", false);
@@ -28,6 +31,13 @@ public class UnitTester {
 		testCases.put("if then a=2 else b=31 end", false);
 		testCases.put("if true else a=2 then b=31 end", false);
 		testCases.put("if true a=2 else b=31 end", false);
+		testCases.put("if true then a=2 end", false);
+		testCases.put("if", false);
+		testCases.put("true", false);
+		testCases.put("false", false);
+		testCases.put("123", false);
+		testCases.put("if if", false);
+		testCases.put("if true then a=1 else b=1 end end", false);
 		
 		StringSplitter splitter;
 		
