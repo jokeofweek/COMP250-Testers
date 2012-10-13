@@ -6,6 +6,7 @@ public class UnitTester {
 
 	public static void main(String... args) {
 		HashMap<String, Boolean> testCases = new HashMap<String, Boolean>();
+        
 		testCases.put("foo=23", true);
 		testCases.put("foo= 23", false);
 		testCases.put("foo =23", false);
@@ -21,10 +22,11 @@ public class UnitTester {
 		testCases.put("then=23", true);
 		testCases.put("else=23", true);
 		testCases.put("end=23", true);
-		testCases.put("if true then if false then a=2 else b=12 end else a=10 end", true);
+		testCases.put("if true then if false then a=2 else b=12 end else a=10 end", true); 
 		testCases.put("if true then if false then a=2 else b=12 end else if false then a=2 else b=12 end end", true);
 		testCases.put("if true then if false then if true then if false then a=2 else b=12 end else if false then a=2 else b=12 end end else b=12 end else if false then a=2 else if true then if false then a=2 else b=12 end else if false then a=2 else b=12 end end end end", true);
-		testCases.put("if true then a=2 else b=31 end", true);
+		
+        testCases.put("if true then a=2 else b=31 end", true);
 		testCases.put("if false then if true then c=5 else d=5 end else b=31 end", true);
 		testCases.put("if true then a=2 else b=31", false);
 		testCases.put("if a=2 then a=2 else b=31 end", false);
@@ -38,6 +40,16 @@ public class UnitTester {
 		testCases.put("123", false);
 		testCases.put("if if", false);
 		testCases.put("if true then a=1 else b=1 end end", false);
+        testCases.put("end", false); //just end
+        testCases.put("if a=2 then a=2 else a=2 end", false); //non bool
+        testCases.put("if true then a=3 else a=2 end end", false); //double end
+        testCases.put("if else end", false); // just if else end no statement
+        testCases.put("a=3 a=2", false); // double assignment
+        testCases.put("if true then a=3 a=2 else a=3 end", false); 
+        // double assignment inside conditionnal statement
+        testCases.put("if true then a=3 else a=3 a=2 end", false);
+        testCases.put("if false then a=3 else a=2 end a=3", false); 
+        //assignment after "end"
 		
 		StringSplitter splitter;
 		
