@@ -56,7 +56,13 @@ public class UnitTester {
 		testCases.put("if true then a=2 else else a=3 end", false);
 		testCases.put("if end", false);
 		testCases.put("if true then a=5 else b=2 end if true then a=5 else b=7 end if true then a=5 else b=7 end if true then a=5 else b=7 end", false);
-
+		// ignore extra whitespace
+		testCases.put("     a=3      ", true);
+		testCases.put("    a=3", true);
+		testCases.put("a=3 ", true);
+		testCases.put("  if  true  then    a=2          else b=3    end ", true);
+		testCases.put("if  true then a=2 else b=3 end ", true);
+		testCases.put("if  true then a=2 elseb=3 end ", false);
 		StringSplitter splitter;
 
 		int fails = 0;
